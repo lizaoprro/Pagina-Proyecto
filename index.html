@@ -2,160 +2,47 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Te extraño abejita :(</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adios</title>
 <style>
     body {
         margin: 0;
         padding: 0;
-        background: #ffd6e8;
+        background-color: #000000; /* Fondo negro */
+        color: #ffffff; /* Texto blanco */
         font-family: "SF Pro Display", "Roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Ocupa toda la altura de la pantalla */
         text-align: center;
     }
 
     h1 {
-        margin-top: 40px;
-        font-size: 32px;
-        color: #333;
+        font-size: 48px; /* Tamaño grande */
+        font-weight: bold; /* En negrilla */
+        margin-bottom: 24px;
     }
 
-    #startBtn {
-        margin-top: 20px;
-        padding: 12px 25px;
+    p {
         font-size: 18px;
-        border: none;
-        border-radius: 12px;
-        background: #ff8fb4;
-        color: white;
-        cursor: pointer;
-        transition: 0.5s ease;
-    }
-
-    #startBtn.hide {
-        opacity: 0;
-        transform: translateY(-10px);
-        pointer-events: none;
-    }
-
-    #content {
-        margin-top: 120px; /* MÁS ABAJO PARA QUE NO TAPE EL BOTÓN */
-        opacity: 0;
-        transition: opacity 1.2s ease-in-out;
-    }
-
-    .taza {
-        image-rendering: pixelated;
-    }
-
-    .taza-rosa {
-        width: 180px;
-        margin-top: 0px
-    }
-
-    /* Reducida solo la taza café */
-    .taza-cafe {
-        width: 140px;
-        margin-top: 20px
-    }
-
-    #tazas {
-        display: flex;
-        justify-content: center;
-        gap: 80px;
-        margin-top: 20px;
-        align-items: flex-end; /* ALINEADAS PERFECTAMENTE */
-    }
-
-    #bocadillo {
-        position: absolute;
-        background: #fff;
-        padding: 12px 18px;
-        border-radius: 10px;
-        border: 3px solid #333;
-        font-size: 18px;
-        width: 260px;
-        top: -95px; /* ENCIMA DE LA TAZA */
-        left: 50%;
-        transform: translateX(-50%);
-        font-weight: 500;
-    }
-
-    #cafeContainer {
-        position: relative;
-        display: flex;
-        justify-content: center;
+        line-height: 1.6;
+        max-width: 600px; /* Limita el ancho para que sea legible */
+        padding: 0 20px;
     }
 </style>
 </head>
 
 <body>
 
-<h1>¿Qué le dice una taza a otra taza?</h1>
-<button id="startBtn">Que le dice?</button>
-
-<div id="content">
-    <div id="tazas">
-
-        <!-- TAZA CAFÉ CON BOCADILLO -->
-        <div id="cafeContainer">
-            <div id="bocadillo"></div>
-            <img src="taza_cafe.png" class="taza taza-cafe">
-        </div>
-
-        <!-- TAZA ROSA -->
-        <img src="taza_rosa.png" class="taza taza-rosa">
-
-    </div>
-</div>
-
-<audio id="audio" src="audio.mp3"></audio>
-
-<script>
-const audio = document.getElementById("audio");
-const bocadillo = document.getElementById("bocadillo");
-const startBtn = document.getElementById("startBtn");
-
-const letra = [
-    { t: 1.496, text: "¿Qué es tazaciendo :(?" },
-    { t: 4.047, text: "¿Por qué no regresas a mis brazos corriendo?" },
-    { t: 9.291, text: "Dónde quedó lo que dijimos hace tiempo..." },
-    { t: 14.908, text: "Planes de casa, niños y un perro comprar..." },
-    { t: 19.145, text: "Te extraño mucho flaca :(" }
-];
-
-let index = 0;
-
-startBtn.addEventListener("click", () => {
-
-    /* DESVANECER BOTÓN */
-    startBtn.classList.add("hide");
-
-    /* MOSTRAR CONTENIDO */
-    setTimeout(() => {
-        document.getElementById("content").style.opacity = 1;
-    }, 400);
-
-    audio.load();
-    audio.currentTime = 0.000;
-
-    audio.play().catch(() => {
-        alert("Toca la pantalla de nuevo para permitir el audio.");
-    });
-
-    sincronizarLetra();
-});
-
-function sincronizarLetra() {
-    index = 0;
-
-    let check = setInterval(() => {
-        if (index < letra.length && audio.currentTime >= letra[index].t) {
-            bocadillo.textContent = letra[index].text;
-            index++;
-        }
-        if (index >= letra.length) clearInterval(check);
-    }, 50);
-}
-</script>
+    <h1>Adios :,)</h1>
+    <p>
+        Aqui habia una pagina bonita me parti como 4 horas haciendo una animacion ojala la hayas alcanzado a ver porque sera lo mas lindo que haran por ti.
+    </p>
+    <p>
+        Gracias por nada y se feliz con el hahaha yo no queria saber nada y aun asi me dijeron todo. Pense que ya habias hecho algo con eso, no hare mas nada. Es la ultima vez que me rompes el corazon, es la ultima vez que entriego mi corazon... para que ames a alguien mas, Adios.
+    </p>
 
 </body>
 </html>
