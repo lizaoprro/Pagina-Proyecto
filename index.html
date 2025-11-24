@@ -1,77 +1,161 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Gill, mon trône, ma vie</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<title>Te extraño abejita :(</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffd6e8;
+        font-family: "SF Pro Display", "Roboto", sans-serif;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 40px;
+        font-size: 32px;
+        color: #333;
+    }
+
+    #startBtn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        background: #ff8fb4;
+        color: white;
+        cursor: pointer;
+        transition: 0.5s ease;
+    }
+
+    #startBtn.hide {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+    }
+
+    #content {
+        margin-top: 120px; /* MÁS ABAJO PARA QUE NO TAPE EL BOTÓN */
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+    }
+
+    .taza {
+        image-rendering: pixelated;
+    }
+
+    .taza-rosa {
+        width: 180px;
+        margin-top: 0px
+    }
+
+    /* Reducida solo la taza café */
+    .taza-cafe {
+        width: 140px;
+        margin-top: 20px
+    }
+
+    #tazas {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        margin-top: 20px;
+        align-items: flex-end; /* ALINEADAS PERFECTAMENTE */
+    }
+
+    #bocadillo {
+        position: absolute;
+        background: #fff;
+        padding: 12px 18px;
+        border-radius: 10px;
+        border: 3px solid #333;
+        font-size: 18px;
+        width: 260px;
+        top: -95px; /* ENCIMA DE LA TAZA */
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 500;
+    }
+
+    #cafeContainer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Hola mensa, te extraño :( </h1>
+<h1>¿Qué le dice una taza a otra taza?</h1>
+<button id="startBtn">Ver respuesta</button>
 
-        <p class="mensaje">
-            Nunca te olvides que siempre voy a estar contigo, en las buenas, en las malas (sobre todo en las malas jaja), pero jamas te voy a querer soltar flaquita hermosa, te quiero con mi vida.
-        </p>
+<div id="content">
+    <div id="tazas">
 
-        <button onclick="mostrarMensaje()">aplastame :3</button>
-
-        <!-- TODO LO QUE APARECERÁ DESPUÉS DE APLASTAR -->
-        <div id="sorpresa" class="hidden">
-
-            <!-- MUSICA DESPUÉS DEL BOTÓN -->
-            <h2>Primero que nada escucha este feel que siento tan hermoso tan distinto que siento cuando pienso en ti, cuando me siento relajado. Cuando sabes que soy el chico mas dramatico pero cariñoso jaja pero dejando eso del lado, eres el sentimiento mas lindo que voy a sentir en mi vida flaca.</h2>
-            <audio id="musica" src="assets/El sentimiento que me haces sentir.mp3" controls></audio>
-
-            <!-- FOTO DESPUÉS DEL BOTÓN -->
-            <h2>Segundo, esta foto es del 12 de febrero del año pasado, cuando quise borrar todas las fotos esta tiene algo especial, tus ojos parecen que me miran, que brillan que no me da el valor de borrarlo. No me entiendo como es posible que unos ojos y una sonrisa me tengan desorbitado, te amo con el mundo te juro.
-            </h2>
-            <img src="assets/Gill.jpg" alt="Mi flaquita hermosa" class="foto">
-
-            <h2>Nunca olvides que eres muy fuerte, que eres muy capaz</h2>
-
-            <!-- BOTÓN SIGUIENTE -->
-            <button class="btn" id="btnSiguiente" onclick="mostrarPregunta()">Siguiente ➜</button>
+        <!-- TAZA CAFÉ CON BOCADILLO -->
+        <div id="cafeContainer">
+            <div id="bocadillo"></div>
+            <img src="taza_cafe.png" class="taza taza-cafe">
         </div>
 
-<h3 id="frasesTitulo">Frases pa' ti flaquita jsjs</h3>
-<ul id="frases">
-            <li>
-                ok esta la saque de la biblia y es la ma dura que he visto.
-                Romanos 8:11: "Y si el Espíritu de aquel que levantó de los muertos a Jesús 
-                mora en vosotros, el que levantó de los muertos a Cristo Jesús vivificará 
-                también vuestros cuerpos mortales por su Espíritu que mora en vosotros."
+        <!-- TAZA ROSA -->
+        <img src="taza_rosa.png" class="taza taza-rosa">
 
-                Asere quiere decir que no importa que tan bajo te caigas mi niña, Dios 
-                siempre sabrá qué hacer contigo y conmigo, algo que haga para los 2...
-                Por favor nunca te llegue a sentir mal mi blanquita que te quiero ver feliz y contenta. 
-                Te amo con mi alma mi niña, jamas lo olvides.
-            </li>
-
-            <li>
-                Gracias por existir Gill. Por ti encontré el significado de 
-                Corintios 13: 4 a 7. Esa no te la pongo jajajaja, te la encargo que lo busques 
-                y cada que te cuestiones si te quiero asere, piensa en ese versiculo.
-            </li>
-
-            <li>
-                Perdóname si esta mierda es muy simple, aún no me enseñan a diseñar ni HTML jaja,
-                pero lo hago con todo el corazón flaca. Poco a poco va a mejorar mi codigo y en si la pagina. 
-                cuando tenga tiempo lo hare te lo prometo. Te mereces todo.
-            </li>
-        </ul>
     </div>
-    <div id="pregunta" class="hidden">
-        <h1>¿Me seguirás queriendo el día siguiente Gisselle?</h1>
+</div>
 
-        <button id="siBtn" class="respuesta">Sí :D</button>
-        <button id="noBtn" class="respuesta">No :(</button>
+<audio id="audio" src="audio.mp3"></audio>
 
-        <p id="respuestaTexto"></p>
-    </div>
+<script>
+const audio = document.getElementById("audio");
+const bocadillo = document.getElementById("bocadillo");
+const startBtn = document.getElementById("startBtn");
 
-    <div class="corazones"></div>
+const letra = [
+    { t: 1.496, text: "¿Qué es tazaciendo :(?" },
+    { t: 4.047, text: "¿Por qué no regresas a mis brazos corriendo?" },
+    { t: 9.291, text: "Dónde quedó lo que dijimos hace tiempo..." },
+    { t: 14.908, text: "Planes de casa, niños y un perro comprar..." },
+    { t: 19.145, text: "Te extraño mucho flaca :(" }
+];
+
+let index = 0;
+
+startBtn.addEventListener("click", () => {
+
+    /* DESVANECER BOTÓN */
+    startBtn.classList.add("hide");
+
+    /* MOSTRAR CONTENIDO */
+    setTimeout(() => {
+        document.getElementById("content").style.opacity = 1;
+    }, 400);
+
+    audio.load();
+    audio.currentTime = 0.000;
+
+    audio.play().catch(() => {
+        alert("Toca la pantalla de nuevo para permitir el audio.");
+    });
+
+    sincronizarLetra();
+});
+
+function sincronizarLetra() {
+    index = 0;
+
+    let check = setInterval(() => {
+        if (index < letra.length && audio.currentTime >= letra[index].t) {
+            bocadillo.textContent = letra[index].text;
+            index++;
+        }
+        if (index >= letra.length) clearInterval(check);
+    }, 50);
+}
+</script>
 
 </body>
 </html>
