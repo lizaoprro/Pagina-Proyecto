@@ -8,41 +8,185 @@
     body {
         margin: 0;
         padding: 0;
-        background-color: #000000; /* Fondo negro */
-        color: #ffffff; /* Texto blanco */
+        background-color: #000000;
+        color: #ffffff;
         font-family: "SF Pro Display", "Roboto", sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Ocupa toda la altura de la pantalla */
+        min-height: 100vh;
         text-align: center;
+        overflow-x: hidden;
+        transition: background-color 1.0s ease;
     }
 
+    /* Estilos del CONTENIDO INICIAL (Todo lo que se OCULTA) */
+    #initial-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity 1.0s ease, transform 1.0s ease;
+        padding: 20px;
+        max-width: 90%;
+    }
+    
     h1 {
-        font-size: 48px; /* Tamaño grande */
-        font-weight: bold; /* En negrilla */
+        font-size: 48px;
+        font-weight: bold;
         margin-bottom: 24px;
     }
 
     p {
         font-size: 18px;
         line-height: 1.6;
-        max-width: 600px; /* Limita el ancho para que sea legible */
-        padding: 0 20px;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo del botón */
+    .action-button {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 30px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    /* -------------------------------------------------------------------------------- */
+    /* Estilos del CONTENIDO FINAL (Solo el video y el texto) */
+    /* -------------------------------------------------------------------------------- */
+
+    #video-perspective {
+        display: none; /* OCULTO POR DEFECTO */
+        position: fixed; /* Fija el video en el centro */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+        animation: fadeIn 1.5s ease forwards;
+        opacity: 0; /* Inicia invisible para la animación */
+    }
+
+    video {
+        width: 90%;
+        max-width: 700px; /* Tamaño máximo visual */
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        outline: none;
+    }
+
+    /* Estilo del texto que cambiará */
+    #final-text {
+        font-size: 20px;
+        color: #dddddd;
+        margin-top: 25px;
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        transition: opacity 1s ease; /* Transición suave para el desvanecimiento */
+    }
+
+    .second-message {
+        color: #a020f0; /* Color morado para el segundo mensaje */
+        font-weight: bold;
+        font-size: 22px;
+        font-style: normal;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
     }
 </style>
 </head>
 
 <body>
 
-    <h1>Adios :,)</h1>
-    <p>
-        Aqui habia una pagina bonita me parti como 4 horas haciendo una animacion ojala la hayas alcanzado a ver porque sera lo mas lindo que haran por ti.
-    </p>
-    <p>
-        Gracias por nada y se feliz con el hahaha yo no queria saber nada y aun asi me dijeron todo. Pense que ya habias hecho algo con eso, no hare mas nada. Es la ultima vez que me rompes el corazon, es la ultima vez que entriego mi corazon... para que ames a alguien mas, Adios.
-    </p>
+    <div id="initial-content">
+        <h1>Adios :,)</h1>
+        
+        <p>
+            Aqui habia una pagina bonita, me parti como 4 horas haciendo una animacion ojala la hayas alcanzado a ver porque sera lo mas lindo que haran por ti.
+        </p>
+        
+        <p>
+            Gracias por nada y se feliz con el hahaha yo no queria saber nada y aun asi me dijeron todo. Pense que ya habias hecho algo con eso, no hare mas nada. Es la ultima vez que me rompes el corazon.
+        </p>
+
+        <button class="action-button" id="btnReveal">...</button>
+    </div>
+
+    <div id="video-perspective">
+        
+        <video id="myVideo" controls playsinline>
+            <source src="PartemeLaCaracompress.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <p id="final-text">Dame una razón para entenderte, porque me duele...</p>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btnReveal');
+        const initialContent = document.getElementById('initial-content');
+        const videoPerspective = document.getElementById('video-perspective');
+        const video = document.getElementById('myVideo');
+        const finalTextElement = document.getElementById('final-text');
+
+        const secondMessage = "Mejor no me digas nada, ya no quiero mas palabras, acuérdate bien de que me tienes :( Cuando quieras ven... acá no paso nada.";
+        const initialDisplayTime = 10000; // 5 segundos para que se muestre el primer texto
+        const transitionTime = 1000;    // 1 segundo para la animación de desvanecimiento
+
+        btn.addEventListener('click', function() {
+            
+            // 1. Ocultar el contenido principal con animación
+            initialContent.style.opacity = '0';
+            initialContent.style.transform = 'translateY(-20px)';
+
+            // 2. Mostrar la perspectiva del video después de que el contenido inicial se oculte
+            setTimeout(() => {
+                
+                initialContent.style.display = 'none';
+                videoPerspective.style.display = 'flex';
+                
+                // Intentar reproducir el video
+                video.play().catch(error => {
+                    console.log("Autoplay falló:", error);
+                });
+                
+                // 3. Establecer la transición del texto después de 5 segundos de ver el video
+                setTimeout(() => {
+                    
+                    // a) Iniciar el desvanecimiento del primer texto (durará 1 segundo)
+                    finalTextElement.style.opacity = '0';
+
+                    // b) Esperar 1 segundo para que la animación de desvanecimiento termine
+                    setTimeout(() => {
+                        
+                        // c) Cambiar el contenido y el estilo
+                        finalTextElement.innerHTML = secondMessage;
+                        finalTextElement.classList.add('second-message');
+                        
+                        // d) Mostrar el segundo texto (animación de aparición)
+                        finalTextElement.style.opacity = '1';
+                        
+                    }, transitionTime); // Espera 1 segundo para el desvanecimiento
+
+                }, initialDisplayTime); // Espera 5 segundos antes de empezar la transición del texto
+
+            }, 800);
+        });
+    </script>
 
 </body>
 </html>
