@@ -1,77 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Gill, mon trône, ma vie</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adios</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+        color: #ffffff;
+        font-family: "SF Pro Display", "Roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        overflow-x: hidden;
+        transition: background-color 1.0s ease;
+    }
+
+    #initial-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity 1.0s ease, transform 1.0s ease;
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 24px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    .action-button {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 30px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+
+    #video-perspective {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+        animation: fadeIn 1.5s ease forwards;
+        opacity: 0;
+    }
+
+    video {
+        width: 90%;
+        max-width: 600px; 
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        outline: none;
+    }
+
+    #final-text {
+        font-size: 20px;
+        color: #dddddd;
+        margin-top: 25px;
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        transition: opacity 1s ease; 
+    }
+
+    .second-message {
+        color: #a020f0; 
+        font-weight: bold;
+        font-size: 20px;
+        font-style: normal;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Hola mensa, te extraño :( </h1>
+    <div id="initial-content">
+        <h1>Adios Amila</h1>
 
-        <p class="mensaje">
-            Nunca te olvides que siempre voy a estar contigo, en las buenas, en las malas (sobre todo en las malas jaja), pero jamas te voy a querer soltar flaquita hermosa, te quiero con mi vida.
-        </p>
-
-        <button onclick="mostrarMensaje()">aplastame :3</button>
-
-        <!-- TODO LO QUE APARECERÁ DESPUÉS DE APLASTAR -->
-        <div id="sorpresa" class="hidden">
-
-            <!-- MUSICA DESPUÉS DEL BOTÓN -->
-            <h2>Primero que nada escucha este feel que siento tan hermoso tan distinto que siento cuando pienso en ti, cuando me siento relajado. Cuando sabes que soy el chico mas dramatico pero cariñoso jaja pero dejando eso del lado, eres el sentimiento mas lindo que voy a sentir en mi vida flaca.</h2>
-            <audio id="musica" src="assets/El sentimiento que me haces sentir.mp3" controls></audio>
-
-            <!-- FOTO DESPUÉS DEL BOTÓN -->
-            <h2>Segundo, esta foto es del 12 de febrero del año pasado, cuando quise borrar todas las fotos esta tiene algo especial, tus ojos parecen que me miran, que brillan que no me da el valor de borrarlo. No me entiendo como es posible que unos ojos y una sonrisa me tengan desorbitado, te amo con el mundo te juro.
-            </h2>
-            <img src="assets/Gill.jpg" alt="Mi flaquita hermosa" class="foto">
-
-            <h2>Nunca olvides que eres muy fuerte, que eres muy capaz</h2>
-
-            <!-- BOTÓN SIGUIENTE -->
-            <button class="btn" id="btnSiguiente" onclick="mostrarPregunta()">Siguiente ➜</button>
-        </div>
-
-<h3 id="frasesTitulo">Frases pa' ti flaquita jsjs</h3>
-<ul id="frases">
-            <li>
-                ok esta la saque de la biblia y es la ma dura que he visto.
-                Romanos 8:11: "Y si el Espíritu de aquel que levantó de los muertos a Jesús 
-                mora en vosotros, el que levantó de los muertos a Cristo Jesús vivificará 
-                también vuestros cuerpos mortales por su Espíritu que mora en vosotros."
-
-                Asere quiere decir que no importa que tan bajo te caigas mi niña, Dios 
-                siempre sabrá qué hacer contigo y conmigo, algo que haga para los 2...
-                Por favor nunca te llegue a sentir mal mi blanquita que te quiero ver feliz y contenta. 
-                Te amo con mi alma mi niña, jamas lo olvides.
-            </li>
-
-            <li>
-                Gracias por existir Gill. Por ti encontré el significado de 
-                Corintios 13: 4 a 7. Esa no te la pongo jajajaja, te la encargo que lo busques 
-                y cada que te cuestiones si te quiero asere, piensa en ese versiculo.
-            </li>
-
-            <li>
-                Perdóname si esta mierda es muy simple, aún no me enseñan a diseñar ni HTML jaja,
-                pero lo hago con todo el corazón flaca. Poco a poco va a mejorar mi codigo y en si la pagina. 
-                cuando tenga tiempo lo hare te lo prometo. Te mereces todo.
-            </li>
-        </ul>
-    </div>
-    <div id="pregunta" class="hidden">
-        <h1>¿Me seguirás queriendo el día siguiente Gisselle?</h1>
-
-        <button id="siBtn" class="respuesta">Sí :D</button>
-        <button id="noBtn" class="respuesta">No :(</button>
-
-        <p id="respuestaTexto"></p>
+        <button class="action-button" id="btnReveal">...</button>
     </div>
 
-    <div class="corazones"></div>
+    <div id="video-perspective">
+        
+        <video id="myVideo" controls playsinline>
+            <source src="SinTiAmila.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <p id="final-text">Hola, lo siento si no respondí en el momento adecuado para ti, a decir verdad ya esperaba que esto quedaría así, no me sentía listo para despedirme y no quiero invadir tus sentimientos o hacerte dudar, respeto lo que me dijiste y de corazon jamás pienses que te voy a llegar a odiar, lo que hiciste lo haces para cuidarte, y eso vale más. Tu sabes que te ame con mi vida y no hace falta aclararlo, solo no supe como hacerlo, son problemas mios y no es tu responsabilidad. Y aunque este problema si me involucre, si asi nos sentimos bien yo respetaré tu decisión. Espero a dios te cuide mucho y te proteja como yo siempre quise que estés protegida y cuidada. Cuídate, aliméntate, sonríe y sigue, la vida sigue aunque sientas que no. Te amó, adiós.</p>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btnReveal');
+        const initialContent = document.getElementById('initial-content');
+        const videoPerspective = document.getElementById('video-perspective');
+        const video = document.getElementById('myVideo');
+        const finalTextElement = document.getElementById('final-text');
+
+
+        btn.addEventListener('click', function() {
+            
+            initialContent.style.opacity = '0';
+            initialContent.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                
+                initialContent.style.display = 'none';
+                videoPerspective.style.display = 'flex';
+                
+                video.play().catch(error => {
+                    console.log("Autoplay falló:", error);
+                });
+
+            }, 800);
+        });
+    </script>
 
 </body>
 </html>
